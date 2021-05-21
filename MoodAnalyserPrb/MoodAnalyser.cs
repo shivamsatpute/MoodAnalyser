@@ -5,29 +5,33 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MoodAnalyserPrb
-{  /* UC1:-  Given a Message, ability to analyse and respond Happy or Sad Mood
-             - Create MoodAnalyser Object - Call analyseMood function with message as 
-             parameter and return Happy or Sad Mood.
-   */
+{ 
     public class MoodAnalyser
     {
-        public string message;  //instance variable      
+        public string message; 
 
 
-        public MoodAnalyser(string message) //parameterized constructor for intilizing instance member
+        public MoodAnalyser(string message) 
         {
             this.message = message;
 
         }
-        public string Analyser()  //Analyzer method find mood
+        public string Analyser()  
         {
-            if (this.message.ToLower().Contains("happy"))
+            try 
+            {
+                if (this.message.ToLower().Contains("happy"))
+                {
+                    return "happy";
+                }
+                else
+                {
+                    return "sad";
+                }
+            }
+            catch
             {
                 return "happy";
-            }
-            else
-            {
-                return "sad";
             }
         }
     }

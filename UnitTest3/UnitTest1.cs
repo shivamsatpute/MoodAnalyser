@@ -12,25 +12,51 @@ namespace MoodAnalyserPrb
         [TestMethod]
         public void AnalyseMood_ShouldReturn_Sad()
         {
-            
+
             string expected = "sad";
             MoodAnalyser obj = new MoodAnalyser("I am in sad Mood");
-           
+
             string actual = obj.Analyser();
 
-           
+
             Assert.AreEqual(expected, actual);
         }
 
-       //TC 1.2
+        //TC 1.2
         [TestMethod]
-        public void Given_Happymood_Expecting_Happy_Result() 
+        public void Given_Happymood_Expecting_Happy_Result()
         {
             MoodAnalyser mood = new MoodAnalyser("I am in happy mood");
             string expected = "happy";
 
+            string actual = mood.Analyser();
+            Assert.AreEqual(expected, actual);
+        }
+        // UC2
+       
+        [TestMethod]
+        public void Given_Nullmood_Expecting_Exception_Result()  
+        {
+            MoodAnalyser mood = new MoodAnalyser(null); 
+            string expected = "Object reference not set to an instance of an object.";
+
             string actual = mood.Analyser();   
+
+            Assert.AreEqual(expected, actual);  
+        }
+
+        //TC 2.1
+        [TestMethod]
+        public void Given_Nullmood_Expecting_happy_Result()  
+        {
+            MoodAnalyser mood = new MoodAnalyser(null);
+            string expected = "happy";
+
+            string actual = mood.Analyser();    
+
             Assert.AreEqual(expected, actual); 
+
+
         }
     }
 }
