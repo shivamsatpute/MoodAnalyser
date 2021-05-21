@@ -58,5 +58,42 @@ namespace MoodAnalyserPrb
 
 
         }
+        //TC: 3.1
+        [TestMethod]
+        public void Given_Nullmood_Using_CustomExpection_Return_Null()  
+        {
+            MoodAnalyser mood = new MoodAnalyser(null); 
+            string actual = "";
+
+            try
+            {
+                actual = mood.Analyser();   
+
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual("Mood should not be null", exception.Message);  
+            }
+        }
+        // TC 3.2
+        [TestMethod]
+        public void Given_Emptymood_Using_CustomExpection_Return_Empty() 
+        {
+
+            string actual = "";
+
+            try
+            {
+                string message = string.Empty;
+                MoodAnalyser mood = new MoodAnalyser(message); 
+                actual = mood.Analyser();    
+
+            }
+            catch (MoodAnalyserException exception)
+            {
+                Assert.AreEqual("Mood should not be empty", exception.Message);  
+            }
+
+        }
     }
 }
