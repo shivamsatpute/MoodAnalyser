@@ -212,5 +212,24 @@ namespace MoodAnalyserPrb
             }
 
         }
+        [TestMethod]
+        public void GivenHappyMoodShouldReturnHappy()
+        {
+            string message = "I am in happy mood";
+            MoodAnalyser expected = new MoodAnalyser("I am in happy mood");
+            object obj = null;
+            try
+            {
+                MoodAnalyserFactory Factory = new MoodAnalyserFactory();
+                obj = Factory.InvokeAnalyserMethod(message, "Analyser");
+            }
+            catch (MoodAnalyserException exception)
+            {
+
+                throw new Exception(exception.Message);
+            }
+            obj.Equals(expected);
+        }
+
     }
 }
