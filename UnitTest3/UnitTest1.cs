@@ -146,5 +146,71 @@ namespace MoodAnalyserPrb
             }
 
         }
+        // TC 5.1
+        [TestMethod]
+        public void Given_MoodAnalyzer_Using_Reflection_Return_ParameterConstructor()  //Method
+        {
+            string message = "I am in happy mood";
+            MoodAnalyser expected = new MoodAnalyser("I am in happy mood"); //Create object and arrange 
+            object obj = null;
+            //string actual = "";
+            // string expected = "Mood should not be empty";
+
+            try
+            {
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                obj = factory.CreateMoodAnalyserParameterObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
+            }
+            catch (MoodAnalyserException exception)
+            {
+
+            }
+            obj.Equals(expected);
+
+        }
+
+        // TC 5.2
+        [TestMethod]
+        public void MoodAnalyseClass_GivenWrongClassName_ShouldReturn_NoClassException_UsingParameterizedConstrucor()
+        {
+            string expected = "Class not found";
+            object obj = null;
+            try
+            {
+                string message = "Happy";
+
+                object moodAnalyser = new MoodAnalyser(message);
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                obj = factory.CreateMoodAnalyserParameterObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser", message);
+                moodAnalyser.Equals(obj);
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
+
+        // TC 
+        [TestMethod]
+        public void MoodAnalyseClass_GivenWrongConstructorName_ShouldReturn_NoConstructorException_UsingParameterizedConstrucor()
+        {
+            string expected = "Constructor not found";
+            object obj = null;
+            try
+            {
+                string message = "Happy";
+
+                object moodAnalyser = new MoodAnalyser(message);
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                obj = factory.CreateMoodAnalyserParameterObject("MoodAnalyzerProblem.MoodAnalyzer", "MoodAnalyzer", message);
+                moodAnalyser.Equals(obj);
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }
