@@ -95,5 +95,56 @@ namespace MoodAnalyserPrb
             }
 
         }
+
+        // TC 4.1
+
+        [TestMethod]
+        public void GivenMoodAnalyseClass_ShouldReturn_MoodAnalyserObject()
+        {
+            string message = null;
+            object expected = new MoodAnalyser(message);
+            MoodAnalyserFactory factory = new MoodAnalyserFactory();
+            object obj = factory.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+        }
+
+        // TC 4.2
+        [TestMethod]
+        public void MoodAnalyseClass_GivenWrongClassName_ShouldReturn_NOClassException()
+        {
+            string expected = "Class not found";
+            try
+            {
+                string message = null;
+                object moodAnalyser = new MoodAnalyser(message);
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                object obj = factory.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+                moodAnalyser.Equals(obj);
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
+        // TC 4.3
+        [TestMethod]
+        public void MoodAnalyseClass_GivenWrongConstructorName_ShouldReturn_NoConstructorException()
+        {
+            string expected = "Constructor not found";
+            try
+            {
+                string message = null;
+                object moodAnalyser = new MoodAnalyser(message);
+                MoodAnalyserFactory factory = new MoodAnalyserFactory();
+                object obj = factory.CreateMoodAnalyserObject("MoodAnalyserProblem.MoodAnalyser", "MoodAnalyser");
+                moodAnalyser.Equals(obj);
+            }
+            catch (MoodAnalyserException ex)
+            {
+                Assert.AreEqual(expected, ex.Message);
+            }
+
+        }
     }
 }
